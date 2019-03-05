@@ -38,9 +38,15 @@ namespace MyGame
             Width = form.ClientSize.Width;
             Height = form.ClientSize.Height;
 
-            Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
+            if (Width >= 1000 || Height >= 1000 || Width < 0 || Height < 0)
+            {
+                Exception e = new ArgumentOutOfRangeException();
+                throw new Exception("Ошибка ",e);
+            }
 
-            //Load();
+            
+
+            Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
             Timer timer = new Timer();
             timer.Start();
